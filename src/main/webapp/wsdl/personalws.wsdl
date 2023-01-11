@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="PersonalWSService" targetNamespace="http://ws.idat.edu.pe/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.idat.edu.pe/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+<import namespace="http://ws.idat.edu.pe/" schemaLocation="personalws_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="findByCorD">
+    <wsdl:part name="parameters" element="tns:findByCorD">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findByCorDResponse">
+    <wsdl:part name="parameters" element="tns:findByCorDResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IPersonalWS">
+    <wsdl:operation name="findByCorD">
+      <wsdl:input name="findByCorD" message="tns:findByCorD">
+    </wsdl:input>
+      <wsdl:output name="findByCorDResponse" message="tns:findByCorDResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PersonalWSServiceSoapBinding" type="tns:IPersonalWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="findByCorD">
+      <soap:operation soapAction="urn:FindByCorD" style="document"/>
+      <wsdl:input name="findByCorD">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findByCorDResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PersonalWSService">
+    <wsdl:port name="PersonalWSPort" binding="tns:PersonalWSServiceSoapBinding">
+      <soap:address location="http://localhost:8080/DWS_EC3_E2_Axel_Villar/services/PersonalWSPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
